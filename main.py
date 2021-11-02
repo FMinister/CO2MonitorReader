@@ -38,7 +38,6 @@ def read_sensor_data(sensor):
         time.sleep(60)
         data = sensor.get_data()
         if bool(data):
-            print(data)
             try:
                 send_data_to_API(data)
             except:

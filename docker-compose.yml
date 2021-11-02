@@ -7,10 +7,10 @@ services:
         tty: true
         volumes:
             - .:/app
-            - /home/johannes/Documents/Logging/Reader/:/app/logs/
-            - /home/johannes/Documents/Python/CO2MonitorReader/app/co2Reader.ini:/app/app/co2Reader.ini
+            - /home/pi/Documents/Logging/Reader/:/app/logs/
+            - /home/pi/Documents/Python/CO2Monitor/CO2MonitorReader/app/co2Reader.ini:/app/app/co2Reader.ini
         devices:
-            - /dev/hidraw2:/dev/hidraw16
+            - /dev/hidraw0:/dev/hidraw16
         networks:
             - co2monitor
 
