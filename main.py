@@ -8,7 +8,7 @@ import time
 
 
 logging.basicConfig(
-    filename="./logs/reader_log.log", encoding="utf-8", level=logging.DEBUG
+    filename="./logs/reader_log.txt", encoding="utf-8", level=logging.DEBUG
 )
 logger = logging.getLogger("co2ReaderLogger")
 
@@ -53,6 +53,7 @@ def send_data_to_API(sensor_data):
         "Date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "Temp": sensor_data["temperature"],
         "CO2": sensor_data["co2"],
+        "Location": config["API"]["LOCATION"]
     }
 
     try:
