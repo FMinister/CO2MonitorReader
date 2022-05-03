@@ -5,6 +5,7 @@ services:
         build: .
         stdin_open: true
         tty: true
+        restart: always
         volumes:
             - .:/app
             - /home/pi/Documents/Logging/Reader/:/app/logs/
