@@ -49,23 +49,22 @@ def send_data_to_API(sensor_data):
     Sending the sensor_data to the API.
     :param sensor_data: co2- and temperature-value from CO2Meter
     """
-    data = {
-        "Date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "Temp": sensor_data["temperature"],
-        "CO2": sensor_data["co2"],
-        "Location": config["API"]["LOCATION"]
-    }
+    data = [
+        {
+            "temp": sensor_data["temperature"],
+            "co2": sensor_data["co2"],
+            "location_id": config["API"]["LOCATIONID"],
+        }
+    ]
+
+    url = config["API"]["URL"]
 
     try:
-        url = config["API"]["URL"]
-    except:
-        logger.error(
-            "Can' reach ini-file. Setting url to http://172.30.0.2:8000/api/postData ."
-        )
-        url = "http://172.30.0.2:8000/api/postData"
-
-    try:
-        requests.post(url, json.dumps(data))
+        headers = {
+            "content-type": "application/json",
+            "X-API-KEY": config["API"]["APIKEY"],
+        }
+        requests.post(url, json.dumps(data), headers)
     except:
         logger.error(f"Error, could not send data: {data} to url: {url}")
 
