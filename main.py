@@ -1,7 +1,6 @@
 from CO2Meter import *
 import configparser
 from datetime import datetime
-import json
 import logging
 import requests
 import time
