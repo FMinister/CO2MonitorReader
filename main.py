@@ -53,7 +53,7 @@ def send_data_to_API(sensor_data):
         {
             "temp": sensor_data["temperature"],
             "co2": sensor_data["co2"],
-            "location_id": config["API"]["LOCATIONID"],
+            "location_id": int(config["API"]["LOCATIONID"]),
         }
     ]
 
@@ -64,7 +64,7 @@ def send_data_to_API(sensor_data):
             "content-type": "application/json",
             "X-API-KEY": config["API"]["APIKEY"],
         }
-        requests.post(url, json.dumps(data), headers)
+        requests.post(url, headers=headers, json=data)
     except:
         logger.error(f"Error, could not send data: {data} to url: {url}")
 
